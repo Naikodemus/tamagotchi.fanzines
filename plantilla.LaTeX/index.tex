@@ -1,0 +1,233 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+% TAMAGOTCHI
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+\documentclass[
+	12pt,
+	a5paper,
+	twoside,
+	openany,
+	titlepage
+	]{book}
+
+\usepackage[
+	top=2.0cm,
+	bottom=2.5cm,
+	inner=2.0cm,
+	outer=2.0cm,
+%	textheight=16cm,
+	heightrounded
+	]{geometry}
+
+\widowpenalty10000
+\clubpenalty10000
+\parskip=0.0em
+%\parindent=5mm
+\usepackage{indentfirst}
+
+% lineas huérfanas y viudas
+	\clubpenalty=10000
+	\widowpenalty=10000
+
+% interlineado
+\usepackage{setspace}
+	\linespread{1.25}
+
+% % % % % % % % % % % % % % % % % % 
+
+% LISTAS, TABLAS Y COLUMNAS
+\usepackage[ampersand]{easylist}
+\usepackage{paralist}	% listas dentro de los párrafos
+\usepackage{enumitem}
+\usepackage{longtable}	% tablas extensas
+\usepackage{multicol}
+	\setlength\columnsep{1.0cm}
+
+% UTILIDADES
+\usepackage{etoolbox}	% navaja suiza
+\usepackage{calc}		% operaciones matemáticas sencillas
+\usepackage{ifthen} 	% condicional programable
+\usepackage{blindtext}	% texto de maquetación
+\usepackage{lastpage}	% detectar última página
+\usepackage{datetime}	% manejo avanzado de fechas
+%\usepackage{showframe}	% muestra los bordes de la página
+						% da problemas con xcolor
+
+% IDIOMA, LOCALIZACIÓN
+\usepackage[spanish]{babel}
+\usepackage[autostyle=true]{csquotes}	% comportamiento comillas
+
+% GRÁFICOS Y COLORES
+\usepackage{graphicx}
+	\DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps}
+	\graphicspath{{img/}}
+\usepackage[usenames,dvipsnames]{xcolor}
+
+% IMÁGENES Y FIGURAS
+\usepackage{wrapfig}	% emplazamiento especial
+\usepackage{caption}	% pie de figura
+%\usepackage{subcaption}	% pie de figura para subdivididas
+%\usepackage{subfig}		% subdivisión de figuras
+
+% TEXTO A BANDERA
+\usepackage{ragged2e}
+
+% GLOSARIO E ÍNDICES ALFABÉTICOS
+\usepackage[makeindex]{imakeidx}
+\makeindex 
+
+% TITULOS
+%\usepackage{titletoc}
+\usepackage{titlesec}
+	\titleformat{\chapter}[block]
+		{\sffamily}
+		{[\chaptertitlename\thechapter]}
+		{-50pt}
+		{\newline\bfseries\Large\sffamily}
+
+\titlespacing*{\chapter}{0cm}{0cm}{1cm}
+
+% TIPOGRAFÍAS Y MOTOR
+\usepackage{fontspec}
+	\usepackage{xltxtra}
+	\usepackage{xunicode}
+\defaultfontfeatures{
+%	Ligatures={Rare,Historical},
+%	Style=Historic,
+	Kerning=On,
+	Style=TitlingCaps,
+	Mapping=tex-text % ligadura de los guiones
+	}
+
+\setromanfont{Junicode}
+\setsansfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}
+
+%\newfontfamily⟨cmd⟩{⟨font name⟩}[⟨font features⟩]
+\newfontfamily\medieval{Essays1743}
+
+% TIPOGRAFÍAS ESPECIALES
+\usepackage{alltt}		% input «as is» ; permite \emph{}
+\usepackage{fancyvrb}	% input «as is» extras
+\usepackage{amsfonts}	% matemáticas
+\usepackage{amssymb}	% símbolos varios
+\usepackage{amsmath}	% matemáticas
+%\usepackage{arev}		% griego y cirílico
+\usepackage{marvosym}	% símbolos y emoticonos
+
+% COMPORTAMIENTOS ESPECIALES
+\usepackage{colonequals}
+
+% NOTAS
+\usepackage{marginnote}
+\usepackage{endnotes}
+\usepackage[hang,flushmargin,bottom,perpage]{footmisc} 
+
+% PROGRAMACIÓN CAPÍTULO
+% para poder emplearlo en los encabezados
+\newcommand{\capitulo}[1]{%
+	\def\nombrecap{#1}%
+	\chapter{#1}%
+}
+
+% ESTILOS DE PÁGINA
+\usepackage{fancyhdr}
+	\pagestyle{empty}
+	\assignpagestyle{\chapter}{capitexto}
+	\addto\captionsspanish{%
+		\renewcommand\chaptername{Txt.}
+	}
+
+% diseño general de la páginas
+\fancypagestyle{tamagotchi}{
+	\fancyhf{}
+	\fancyhf[HRE]{%
+	{\ttfamily\scriptsize\MakeUppercase\nombrecap}
+	}
+	\fancyhf[HLO]{%
+	{\ttfamily\scriptsize\MakeUppercase[T\thechapter]}
+	}
+	\fancyhf[FLE]{%
+	{\ttfamily\footnotesize\thepage\dots}
+	}
+	\fancyhf[FRE]{%
+	{\ttfamily\scriptsize WE ARE}
+	}
+	\fancyhf[FLO]{%
+	{\ttfamily\scriptsize TAMAGOTCHI}
+	}
+	\fancyhf[FRO]{%
+	{\ttfamily\footnotesize\dots\thepage}
+	}
+	\renewcommand{\headrulewidth}{0.5pt}
+	\renewcommand{\footrulewidth}{0.5pt}
+}
+
+% diseño particular del capítulo
+\fancypagestyle{capitexto}{
+	\fancyhf{}
+	\fancyhf[HRE]{}
+	\fancyhf[HLO]{}
+	\fancyhf[FLE]{%
+	{\ttfamily\footnotesize\thepage\dots}
+	}
+	\fancyhf[FRE]{%
+	{\ttfamily\scriptsize WE ARE}
+	}
+	\fancyhf[FLO]{%
+	{\ttfamily\scriptsize TAMAGOTCHI}
+	}
+	\fancyhf[FRO]{%
+	{\ttfamily\footnotesize\dots\thepage}
+	}
+	\renewcommand{\headrulewidth}{0pt}
+}
+
+\pagestyle{tamagotchi}
+
+% BIBLIOGRAFIA
+% hay que compilar 4 veces: [ latex, bibtex, latex, latex ]
+\usepackage{cite}
+\usepackage{chicago}
+\addto\captionsspanish{%
+	\renewcommand\bibname{Referencias}}
+
+% ENLACES E INFO PDF
+	% este paquete tiene que ser el último en cargar
+\usepackage[hidelinks]{hyperref}
+	\hypersetup
+	{
+	pdfauthor={TAMAGOTCHI},
+	pdfsubject={TEXTOS},
+	pdftitle={TAMAGOTCHI},
+	pdfkeywords={tags},
+	pdfdisplaydoctitle={true}
+	}
+	\providecommand\phantomsection{}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+\title{\textbf{\sffamily ONTOLOGÍA}}
+\author{\sffamily TAMAGOTCHI}
+\date{\sffamily\textbf{[ 01 ]}}
+
+\begin{document}
+\maketitle
+\input{./contenido/logo.tex}
+\input{./contenido/wearetamagotchi.tex}
+
+\setcounter{page}{0}
+\input{./contenido/contenido.tex}
+
+\bibliographystyle{chicago}	% plain, unsrt, alpha, abbrv
+\bibliography{biblio/bibprincipal}
+% -- o --
+%\input{./biblio/simple.tex}
+
+\input{./contenido/final.tex}
+\end{document}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% FIN DEL ARCHIVO
