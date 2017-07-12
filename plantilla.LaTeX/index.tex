@@ -91,8 +91,8 @@
 
 % GLOSARIO E ÍNDICES ALFABÉTICOS
 \usepackage{imakeidx}
-	\makeindex[intoc,name=p,title=\textbf{Índice alfabético general}]
-	\makeindex[intoc,name=g,title=\textbf{Índice onomástico}]
+	\makeindex[intoc,name=princ,title=\textbf{Índice alfabético general}]
+	\makeindex[intoc,name=gente,title=\textbf{Índice onomástico}]
 \makeindex 
 
 % TITULOS
@@ -111,10 +111,9 @@
 	\usepackage{xltxtra}
 	\usepackage{xunicode}
 \defaultfontfeatures{
-%	Ligatures={Rare,Historical},
-%	Style=Historic,
-	Kerning=On,
+	Ligatures=Historic,
 	Style=TitlingCaps,
+	Kerning=On,
 	Mapping=tex-text % ligadura de los guiones
 	}
 
@@ -249,14 +248,14 @@
 \setcounter{page}{1}
 \input{./contenido/contenido.tex}
 
-\clearpage
-\setcounter{chapter}{0}
-\def\nombrecap{}
-\printindex[p]
-\printindex[g]
+%\clearpage
+%\setcounter{chapter}{0}
+%\def\nombrecap{}
+%\printindex[princ]
+%\printindex[gente]
 
-\bibliographystyle{chicago}	% plain, unsrt, alpha, abbrv
-\bibliography{biblio/bibprincipal}
+%\bibliographystyle{chicago}	% plain, unsrt, alpha, abbrv
+%\bibliography{biblio/bibprincipal}
 % -- o --
 %\input{./biblio/simple.tex}
 
