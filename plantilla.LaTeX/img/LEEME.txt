@@ -1,0 +1,16 @@
+
+  Nota sobre las imágenes:
+
+  anchura máx.		= 10.8cm / 4.251969in
+  resolución mínima = 300ppp
+
+  lo que hace una imagen de a la máxima anchura
+  tenga el siguiente ancho:
+
+	4.251969 x 120	=  1275 puntos
+
+
+  Las imágenes que sean de menos puntos habrán 
+  de conservar su tamaño original sin ser ampliadas.
+
+	
